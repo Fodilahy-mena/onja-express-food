@@ -97,10 +97,6 @@ button.served:hover {
 }
 
 .wrapper {
-	opacity: 0;
-}
-
-.wrapper.new_order {
 	display: grid;
     position: fixed;
     height: 100vh;
@@ -109,6 +105,11 @@ button.served:hover {
     left: 0;
     justify-content: center;
 	align-items: center;
+	pointer-events: none;
+	opacity: 0;
+}
+
+.wrapper.new_order {
 	pointer-events: all;
 	background: hsla(0, 1%, 18%, 0.7);
 	opacity: 1;
@@ -121,4 +122,37 @@ button.served:hover {
 	border-radius: 5px;
 	box-shadow: black 0px 3px 1px 7px;
 	padding: 1rem;
+}
+
+/* Details modal styles */
+
+.outer_details {
+	display: grid;
+    position: fixed;
+    height: 100vh;
+    width: 100vw;
+    top: 0;
+    left: 0;
+    justify-content: center;
+    align-items: center;
+	pointer-events: none;
+}
+
+.outer_details.open img {
+	width: 100%;
+	padding: 1rem;
+	box-sizing: border-box;
+}
+
+.outer_details {
+	opacity: 0;
+}
+.outer_details.open .inner-details {
+	background-color: blue;
+	color: white;
+}
+.outer_details.open {
+	opacity: 1;
+    pointer-events: all;
+	background: hsla(54, 67%, 88%, 0.7);
 }
