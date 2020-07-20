@@ -80,52 +80,45 @@ window.addEventListener('keydown', event => {
     }
 });
 
-
-
-
-    // Let's add a new order now
+// Let's add a new order now
 
 // Let's select some text content from form modal
+
+// const submitOrder = document.querySelector('.submitOrder');
 // const titleFormInput = document.querySelector('.input-form');
-// let title = `${titleFormInput.value}`;
-
-
-//const container = document.querySelector('.container');
-const addAnOrder = ($event) => {
-    $event.preventDefault();
-    let orderList = `
-    <div class="order-list">
-        <div class="order">
-            <span class="title">JEROME</span>
-            <button class="details">Details</button>
-            <button class="served">Delete order</button>
-        </div>
-    </div>
-    `;
-}
-//console.log(container);
-// Details
-//const outerDetails = document.querySelector('.outer_details');
-//const innerDetails = document.querySelector('.inner_details');
-
-// const radioButtons = document.querySelectorAll("[type='radio']");
-// for (let i = 0; i < radioButtons.length; i++) { radioButtons[i].addEventListener('change', ($event) => {
-// transportResult.textContent = $event.target.value;
-// });
-// }
-//console.log(radioButtons);
-
-// const detailsButtonClick = (event) => {
-//     event.preventDefault();
+// submitOrder.addEventListener = (event) => {
+//     if (event.target.matches('form'))
+//     let form = event.target;
+//     let title = form.name.value;
+//     let size = form.size.value;
+//     let dish = form.dish.value;
 //     details.innerHTML = `
 //         <h2>${title}</h2>
-//         <h3>${title}</h3>
-//         <ha>${title}</h4>
+//         <h3>${size}</h3>
+//         <ha>${dish}</h4>
 //         <img src="https://picsum.photos/200?random=2"/>
 //     `;
 
 //     outerDetails.classList.add('open');
 // };
+
+const ol = document.querySelector('.order-list');
+
+let orderList = `
+    <div class="order">
+        <span class="title">This will the name input</span>
+        <button class="details">Details</button>
+        <button class="served">Delete order</button>
+    </div>
+    `;
+
+
+const addAnOrder = ($event) => {
+    $event.preventDefault();
+    ol.innerHTML += orderList;
+}
+
+
 
 // const closeDetailsModal = event => {
 //     const isOutside = !event.target.closest('.inner_details');
@@ -140,18 +133,9 @@ const addAnOrder = ($event) => {
 //     }
 // });
 
-//outerDetails.addEventListener('click', closeDetailsModal);
-// const dishForm = document.querySelector('.select-form');
-// dishForm.addEventListener('change', ($event) => {
-// musicResult.textContent = $event.target.value;
-// });
-// musicResult.textContent = dropDownMenu.value;
 
+const buttonDetails = document.querySelector('.details');
 
-
-const submitOrder = document.querySelector('.submitOrder');
-//const buttonDetails = document.querySelector('.details');
-//console.log(buttonDetails);
-submitOrder.addEventListener('click', addAnOrder);
+submitOrder.addEventListener('submit', addAnOrder);
 //buttonDetails.addEventListener('click', detailsButtonClick);
 
