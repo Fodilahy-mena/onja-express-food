@@ -106,12 +106,12 @@ const ol = document.querySelector('.order-list');
 
 let orderList = `
     <div class="order">
-        <span class="title">This will the name input</span>
+        <span class="title">This will the name</span>
         <button class="details">Details</button>
         <button class="served">Delete order</button>
     </div>
     `;
-
+    ol.innerHTML += orderList;
 
 const addAnOrder = ($event) => {
     $event.preventDefault();
