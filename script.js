@@ -1,5 +1,7 @@
-// If the add a new order if clicked, add this form
-const addNewOrder = document.querySelector('.add-order');
+
+const divWrapper = document.querySelector('.wrapper');
+const divInnerWrapper = document.querySelector('.wrapper__inner');
+const addNewOrderBtn = document.querySelector('.add-order');
 const body = document.querySelector('body');
 let formHTML = `
         <form class="wrapper__form">
@@ -47,11 +49,6 @@ let formHTML = `
 
 // Access the necessary elements from html here
 
-const divWrapper = document.querySelector('.wrapper');
-const form = document.querySelector('.wrapper__form');
-const divInnerWrapper = document.querySelector('.wrapper__inner');
-console.log(divInnerWrapper);
-console.log(addNewOrder);
 // Let add the form modal
 
 const handleAddNewOrderClick = (event) => {
@@ -59,7 +56,10 @@ const handleAddNewOrderClick = (event) => {
     divWrapper.classList.add('new_order');
     divInnerWrapper.innerHTML = formHTML;
 }
-// Let quit the form modal
+
+addNewOrderBtn.addEventListener('click', 
+    handleAddNewOrderClick);
+
 const closeFormModal = event => {
     const isOutside = !event.target.closest('.wrapper__form');
     if (isOutside) {
@@ -67,75 +67,48 @@ const closeFormModal = event => {
     }
 }
 
-// Listening for click event listener with add a new order button
-addNewOrder.addEventListener('click', 
-    handleAddNewOrderClick);
-
-// Listen for a click to quite the modal form
 divWrapper.addEventListener('click', closeFormModal);
-// Or with escape key
+
 window.addEventListener('keydown', event => {
     if (event.key === "Escape") {
         divWrapper.classList.remove('new_order');
     }
 });
 
-// Let's add a new order now
 
 // Let's select some text content from form modal
 
-// const submitOrder = document.querySelector('.submitOrder');
-// const titleFormInput = document.querySelector('.input-form');
-// submitOrder.addEventListener = (event) => {
-//     if (event.target.matches('form'))
-//     let form = event.target;
-//     let title = form.name.value;
-//     let size = form.size.value;
-//     let dish = form.dish.value;
-//     details.innerHTML = `
-//         <h2>${title}</h2>
-//         <h3>${size}</h3>
-//         <ha>${dish}</h4>
-//         <img src="https://picsum.photos/200?random=2"/>
-//     `;
-
-//     outerDetails.classList.add('open');
-// };
-
+ 
 const ol = document.querySelector('.order-list');
 
-let orderList = `
-    <div class="order">
-        <span class="title">This will the name</span>
-        <button class="details">Details</button>
-        <button class="served">Delete order</button>
-    </div>
+const handleSubmit = e => {
+    e.preventDefault();
+    if (e.target.matches('.wrapper__form')) {
+    const form = e.target;
+    const { name , dish, size, amount } = form;
+    const orderListHTML = `
+        <div class="order" data-dish="${dish.value}" data-size="${size.value}" data-amount="${amount.value}">
+            <span class="title">${name.value}</span>
+            <button class="details">Details</button>
+            <button class="served">Delete order</button>
+        </div>
     `;
-    ol.innerHTML += orderList;
-
-const addAnOrder = ($event) => {
-    $event.preventDefault();
-    ol.innerHTML += orderList;
+    ol.innerHTML += orderListHTML;
+    
+    form.reset();
+    divWrapper.classList.remove('new_order');
+    }
 }
 
 
+// ****************
 
-// const closeDetailsModal = event => {
-//     const isOutside = !event.target.closest('.inner_details');
-//     if (isOutside) {
-//         outerDetails.classList.remove('open');
-//     }
-// }
+const handleBtnDetails = e => {
+    
+}
 
-// window.addEventListener('keydown', event => {
-//     if (event.key === "Escape") {
-//         outerDetails.classList.remove('open');
-//     }
-// });
+const submitOrder = document.querySelector('.submitOrder');
 
+window.addEventListener('submit', handleSubmit);
 
-const buttonDetails = document.querySelector('.details');
-
-submitOrder.addEventListener('submit', addAnOrder);
-//buttonDetails.addEventListener('click', detailsButtonClick);
 
